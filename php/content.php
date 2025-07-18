@@ -14,4 +14,5 @@
         </div>
     </div>
     <div id="genre-manga" class="mt-3 modal fade"></div>
+
 </div>

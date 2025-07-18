@@ -6814,7 +6814,7 @@ textarea.form-control-lg {
   display: none !important;
 }
 
-.shadow, .shadow-custom {
+.shadow {
   box-shadow: var(--bs-box-shadow) !important;
 }
 
@@ -11316,7 +11316,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-.shadow-custom {
+.shadow-text {
   color: #E67514;
 }
 
@@ -11348,4 +11348,12 @@ nav {
 
 .content-container {
   z-index: -1;
+}
+
+.lift-on-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.lift-on-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 5px #E67514;
 }

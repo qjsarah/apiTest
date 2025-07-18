@@ -120,10 +120,10 @@ async function loadGenreManga(genreId) {
                 <h3 class="modal-title">Manga in ${genres.find(g => g.id === genreId).name} Genre</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body d-flex flex-wrap gap-3 justify-content-between">
+            <div class="modal-body d-flex flex-wrap">
                 ${mangaList.map(manga => `
-                    <div class="col-6 col-sm-3 mb-4">
-                        <div class="item shadow p-2 rounded-end-5">
+                    <div class="col-6 col-sm-3 mb-4 float-center">
+                        <div class="item p-2 rounded-bottom-4 lift-on-hover text-center">
                             <a href="${manga.url}" target="_blank" class="manga-cover"><img src="${manga.images.jpg.image_url}" class="rounded-end-4 img-fluid" alt="${manga.title}" style="width: 150px;"></a>
                             <p class="fw-bold text-start">${manga.title}</p>
                         </div>
