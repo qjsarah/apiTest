@@ -2,8 +2,15 @@
 // Option A: Include all of Bootstrap
 
 // Include any default variable overrides here (though functions won't be available)
-$form-select-border-color: #212529 !important;
+$secondary: #E67514;
+$input-border-color: #E67514;
+$btn-border-color: $secondary;
 
+// Optional: Override other related variables if needed
+$theme-colors: (
+  "secondary": $secondary,
+  // You can also override other theme colors here
+);
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
 // Then add additional custom code here

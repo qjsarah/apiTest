@@ -15,11 +15,9 @@ async function fetchLatestManga() {
   return data.data;
 }
 
-
-
 // Fetch manga by genre (genreId is a number, e.g. 1 for Action)
 async function fetchMangaByGenre(genreId) {
-    const res = await fetch(`${baseUrl}/manga?genres=${genreId}`);
+    const res = await fetch(`${baseUrl}/manga?genres=${genreId}&order_by=members&sort=desc`);
     const data = await res.json();
     return data.data;
 }
@@ -77,6 +75,7 @@ fetchPopularManga().then(mangaList => {
     `;
     owlCarousel();
 });
+
 //display content in the latest manga section
 const latestDiv = document.getElementById('latest-manga');
 fetchLatestManga().then(mangaList => {
@@ -93,8 +92,54 @@ fetchLatestManga().then(mangaList => {
     owlCarousel();
 });
 
-const genreDiv = document.getElementById('genre-list');
+// GENRE LIST
+const genres = [
+  { id: 1, name: 'Action' },
+  { id: 2, name: 'Adventure' },
+  { id: 4, name: 'Comedy' },
+  { id: 7, name: 'Mystery' },
+  { id: 10, name: 'Fantasy' },
+  { id: 36, name: 'Slice of Life' },
+];  
+const genreListDiv = document.getElementById('genre-list');
+const genreMangaDiv = document.getElementById('genre-manga');
 
-genreDiv.innerHTML = `
-        <h2>Genre</h2>
-`;
+genreListDiv.innerHTML = genres.map(genre => `
+    <button class="btn mb-2 form-control btn-outline-secondary py-3 rounded-end-5" onclick="loadGenreManga(${genre.id})" >${genre.name}</button>`).join('');
+//CHANGE BUTTON THEME
+function updateGenreButtonTheme(theme) {
+  const genreButton = document.querySelectorAll('#genre-list .btn');
+  genreButton.forEach(btn => {
+    if (theme === 'dark'){
+      btn.classList.add('btn-outline-light');
+      btn.classList.remove('btn-outline-dark');
+    } else {
+      btn.classList.add('btn-outline-dark');
+      btn.classList.remove('btn-outline-light');
+    }
+  })
+};
+const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+updateGenreButtonTheme(currentTheme);
+
+async function loadGenreManga(genreId) {
+    const mangaList = await fetchMangaByGenre(genreId);
+    genreMangaDiv.innerHTML = `
+      <div class="text-center my-3">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    `;
+    genreMangaDiv.innerHTML = `
+        <h3>Manga in ${genres.find(g => g.id === genreId).name} Genre</h3>
+        <div class="">
+            ${mangaList.slice(10, 20).map(manga => `
+                <div class="item">
+                    <a href="${manga.url}" target="_blank"><img src="${manga.images.jpg.image_url}" class="rounded-end-4" alt="${manga.title}" style="width: 150px;"></a>
+                    <p class="fw-bold text-start">${manga.title}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}

@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeIcon = document.getElementById('themeIcon');
 
   // Check localStorage for saved theme on load
-  const savedTheme = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-bs-theme', savedTheme);
   themeIcon.innerHTML = savedTheme === 'light'
     ? '<i class="fa-solid fa-moon"></i>'
@@ -20,5 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     themeIcon.innerHTML = newTheme === 'dark'
       ? '<i class="fa-solid fa-sun"></i>'
       : '<i class="fa-solid fa-moon"></i>';
+      updateGenreButtonTheme(newTheme);
   });  
 });
