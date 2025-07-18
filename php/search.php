@@ -15,7 +15,6 @@
 <div id="results" class="modal fade" tabindex="-1">
   <div class="modal-dialog custom-modal modal-dialog-scrollable">
     <div class="modal-content">
-      <!-- This content will be filled by JS -->
     </div>
   </div>
 </div>

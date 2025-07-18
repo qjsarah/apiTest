@@ -5,7 +5,7 @@ const baseUrl = 'https://api.jikan.moe/v4';
 async function fetchPopularManga() {
     const res = await fetch(`${baseUrl}/top/manga`);
     const data = await res.json();
-    return data.data; // Array of manga
+    return data.data; 
 }
 
 // Fetch latest manga updates
@@ -15,7 +15,7 @@ async function fetchLatestManga() {
   return data.data;
 }
 
-// Fetch manga by genre (genreId is a number, e.g. 1 for Action)
+// Fetch manga by genre
 async function fetchMangaByGenre(genreId) {
     const res = await fetch(`${baseUrl}/manga?genres=${genreId}&order_by=members&sort=desc`);
     const data = await res.json();
@@ -104,8 +104,8 @@ const genres = [
   { id: 36, name: 'Slice of Life' },
   { id: 14, name: 'Horror' },
   { id: 62, name: 'Isekai'}
-
 ];  
+
 const genreListDiv = document.getElementById('genre-list');
 const genreMangaDiv = document.getElementById('genre-manga');
 
