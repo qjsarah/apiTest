@@ -7,10 +7,12 @@
   <script src="bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="stylesheet" href="node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="bg.css">
 </head>
+  <div class="el"></div>
 
 <body>
-  <div class="container mt-3 w-100 d-flex justify-content-between align-items-center">
+  <div class="container pt-3 w-100 d-flex justify-content-between align-items-center">
     <h3>MangaVerse</h3>
     <div class="d-flex float-end">
       <input type="text" id="title" placeholder="Enter manga title" class="form-control">

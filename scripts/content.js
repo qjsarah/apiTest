@@ -69,7 +69,7 @@ fetchPopularManga().then(mangaList => {
         <div class="owl-carousel owl-theme">
             ${mangaList.slice(0, 20).map(manga => `
                 <div class="item d-flex flex-column">
-                    <img src="${manga.images.jpg.image_url}" class="rounded-end-4" alt="${manga.title}" style="width: 150px;">
+                    <a href="${manga.url}" target="_blank"><img src="${manga.images.jpg.image_url}" class="rounded-end-4" alt="${manga.title}" style="width: 150px;"></a>
                     <p class="fw-bold text-start">${manga.title}</p>
                 </div>
             `).join('')}
@@ -84,10 +84,17 @@ fetchLatestManga().then(mangaList => {
         <div class="owl-carousel owl-theme">
             ${mangaList.slice(0, 10).map(manga => `
                 <div class="item">
-                    <img src="${manga.images.jpg.image_url}" class="rounded-end-4" alt="${manga.title}" style="width: 150px;">
+                    <a href="${manga.url}" target="_blank"><img src="${manga.images.jpg.image_url}" class="rounded-end-4" alt="${manga.title}" style="width: 150px;"></a>
+                    <p class="fw-bold text-start">${manga.title}</p>
                 </div>
             `).join('')}
         </div>
     `;
     owlCarousel();
 });
+
+const genreDiv = document.getElementById('genre-list');
+
+genreDiv.innerHTML = `
+        <h2>Genre</h2>
+`;
