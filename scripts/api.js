@@ -32,7 +32,7 @@ async function fetchManga() {
 
         // Display manga info
         resultsDiv.innerHTML = `
-          <div class="modal-dialog p-5">
+          <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
                 <h3>${info.title}</h3>
@@ -40,7 +40,7 @@ async function fetchManga() {
               </div>
               <div class="d-flex gap-3 flex-column flex-lg-row align-items-center justify-content-center container float-center modal-body flex-wrap">
                 <a href="${info.url}" target="_blank">
-                  <img src="${info.images.jpg.image_url}" alt="${info.title}" class="img-fluid" width="200">
+                  <img src="${info.images.jpg.image_url}" alt="${info.title}" class="img-fluid">
                 </a>
                 <div>
                   <p>${info.synopsis ? info.synopsis.slice(0, 250) + (info.synopsis.length > 300 ? '...' : '') : 'No synopsis available.'} <a href="${info.url}" target="_blank" class="nav-link"><u>read more.</u></a></p>

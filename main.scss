@@ -5,7 +5,8 @@
 $secondary: #E67514;
 $input-border-color: #E67514;
 $btn-border-color: $secondary;
-
+$input-focus-border-color:  $secondary !important; 
+$btn-focus-border-color: $secondary !important; 
 // Optional: Override other related variables if needed
 $theme-colors: (
   "secondary": $secondary,
@@ -14,3 +15,32 @@ $theme-colors: (
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
 // Then add additional custom code here
+.shadow-custom {
+  @extend .shadow;
+  color: $secondary;
+}
+
+.manga-cover {
+  position: relative;
+  display: block;
+}
+.manga-title {
+  display: none;
+  color: #fff;
+}
+.manga-cover:hover .manga-title {
+  display: block;
+}
+
+.manga-cover img {
+  transition: filter 0.3s;
+}
+.manga-cover img:hover {
+  filter: brightness(0.5);
+}
+nav {
+  z-index: 99;
+}
+.content-container {
+  z-index: -1;
+}

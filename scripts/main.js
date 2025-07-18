@@ -19,6 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
     themeIcon.innerHTML = newTheme === 'dark'
       ? '<i class="fa-solid fa-sun"></i>'
       : '<i class="fa-solid fa-moon"></i>';
-      updateGenreButtonTheme(newTheme);
   });  
 });

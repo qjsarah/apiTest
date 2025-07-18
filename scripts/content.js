@@ -67,8 +67,10 @@ fetchPopularManga().then(mangaList => {
         <div class="owl-carousel owl-theme">
             ${mangaList.slice(0, 20).map(manga => `
                 <div class="item d-flex flex-column">
-                    <a href="${manga.url}" target="_blank"><img src="${manga.images.jpg.image_url}" class="rounded-end-4" alt="${manga.title}" style="width: 150px;"></a>
-                    <p class="fw-bold text-start">${manga.title}</p>
+                    <a href="${manga.url}" target="_blank" class="manga-cover nav-link">
+                        <img src="${manga.images.jpg.image_url}" class="rounded-end-4 " alt="${manga.title}" style="width: 150px;">
+                        <span class="fw-bold text-start manga-title position-absolute start-0 bottom-0">${manga.title}</span>
+                    </a>
                 </div>
             `).join('')}
         </div>
@@ -83,8 +85,8 @@ fetchLatestManga().then(mangaList => {
         <div class="owl-carousel owl-theme">
             ${mangaList.slice(0, 10).map(manga => `
                 <div class="item">
-                    <a href="${manga.url}" target="_blank"><img src="${manga.images.jpg.image_url}" class="rounded-end-4" alt="${manga.title}" style="width: 150px;"></a>
-                    <p class="fw-bold text-start">${manga.title}</p>
+                    <a href="${manga.url}" target="_blank" class="manga-cover nav-link"><img src="${manga.images.jpg.image_url}" class="rounded-end-4" alt="${manga.title}" style="width: 150px;">
+                    <span class="fw-bold text-start manga-title position-absolute start-0 bottom-0 text-light">${manga.title}</span></a>
                 </div>
             `).join('')}
         </div>
@@ -100,46 +102,36 @@ const genres = [
   { id: 7, name: 'Mystery' },
   { id: 10, name: 'Fantasy' },
   { id: 36, name: 'Slice of Life' },
+  { id: 14, name: 'Horror' },
+
 ];  
 const genreListDiv = document.getElementById('genre-list');
 const genreMangaDiv = document.getElementById('genre-manga');
 
 genreListDiv.innerHTML = genres.map(genre => `
     <button class="btn mb-2 form-control btn-outline-secondary py-3 rounded-end-5" onclick="loadGenreManga(${genre.id})" >${genre.name}</button>`).join('');
-//CHANGE BUTTON THEME
-function updateGenreButtonTheme(theme) {
-  const genreButton = document.querySelectorAll('#genre-list .btn');
-  genreButton.forEach(btn => {
-    if (theme === 'dark'){
-      btn.classList.add('btn-outline-light');
-      btn.classList.remove('btn-outline-dark');
-    } else {
-      btn.classList.add('btn-outline-dark');
-      btn.classList.remove('btn-outline-light');
-    }
-  })
-};
-const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-updateGenreButtonTheme(currentTheme);
 
 async function loadGenreManga(genreId) {
     const mangaList = await fetchMangaByGenre(genreId);
     genreMangaDiv.innerHTML = `
-      <div class="text-center my-3">
-        <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">Loading...</span>
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Manga in ${genres.find(g => g.id === genreId).name} Genre</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex flex-wrap gap-3 justify-content-between">
+                ${mangaList.map(manga => `
+                    <div class="col-6 col-sm-3 mb-4">
+                        <div class="item shadow p-2 rounded-end-5">
+                            <a href="${manga.url}" target="_blank" class="manga-cover"><img src="${manga.images.jpg.image_url}" class="rounded-end-4 img-fluid" alt="${manga.title}" style="width: 150px;"></a>
+                            <p class="fw-bold text-start">${manga.title}</p>
+                        </div>
+                    </div>
+                `).join('')}
         </div>
-      </div>
+    </div>
     `;
-    genreMangaDiv.innerHTML = `
-        <h3>Manga in ${genres.find(g => g.id === genreId).name} Genre</h3>
-        <div class="">
-            ${mangaList.slice(10, 20).map(manga => `
-                <div class="item">
-                    <a href="${manga.url}" target="_blank"><img src="${manga.images.jpg.image_url}" class="rounded-end-4" alt="${manga.title}" style="width: 150px;"></a>
-                    <p class="fw-bold text-start">${manga.title}</p>
-                </div>
-            `).join('')}
-        </div>
-    `;
+    const modal = new bootstrap.Modal(genreMangaDiv);
+    modal.show();
 }
