@@ -103,6 +103,7 @@ const genres = [
   { id: 10, name: 'Fantasy' },
   { id: 36, name: 'Slice of Life' },
   { id: 14, name: 'Horror' },
+  { id: 62, name: 'Isekai'}
 
 ];  
 const genreListDiv = document.getElementById('genre-list');
