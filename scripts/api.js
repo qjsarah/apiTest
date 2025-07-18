@@ -43,11 +43,12 @@ async function fetchManga() {
           <p>${info.synopsis ? info.synopsis.slice(0, 250) + (info.synopsis.length > 300 ? '...' : '') : 'No synopsis available.'} 
           <a href="${info.url}" target="_blank" class="nav-link"><u>read more.</u></a></p>
         </div>
+        <div class="mt-2 container">
+          <h4>Main Character/s</h4>
+          <div class="characterDetails d-flex gap-1 flex-wrap"></div>
+        </div>
       </div>
-      <div class="mt-2 container">
-        <h4>Main Character/s</h4>
-        <div class="characterDetails d-flex gap-1 flex-wrap"></div>
-      </div>
+
     `;
 
     const characterDetailsDiv = modalContent.querySelector('.characterDetails');

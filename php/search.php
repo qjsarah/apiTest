@@ -3,7 +3,7 @@
     <h3>MangaVerse</h3>
       <div class="d-flex float-end">
         <input type="text" id="title" placeholder="Enter manga title" class="form-control rounded-pill pr-3">
-        <button onclick="fetchManga()" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#results" id="searchBtn">Search</button>
+        <button onclick="fetchManga()" class="btn btn-outline-dark"id="searchBtn">Search</button>
 
         <div>
         <button id="themeToggle" class="btn">
@@ -12,9 +12,9 @@
     </div>
 </div>
 </nav>
+
 <div id="results" class="modal fade" tabindex="-1">
-  <div class="modal-dialog custom-modal modal-dialog-scrollable">
-    <div class="modal-content">
-    </div>
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content"></div>
   </div>
 </div>
